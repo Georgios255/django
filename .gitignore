@@ -1,0 +1,33 @@
+# venv & Python cache
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# env & local config (keep example files tracked)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+
+# Django/DRF artifacts
+staticfiles/
+media/
+*.sqlite3
+.db.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Tooling / IDE
+.idea/
+.vscode/
+pytest_cache/
+.coverage
+.coverage.*
+dist/
+build/
+.DS_Store
+Thumbs.db

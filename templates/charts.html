@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Charts</title>
+</head>
+<body>
+  <h2>Employees per Department</h2>
+  <canvas id="dept" width="600" height="300"></canvas>
+
+  <h2>Monthly Attendance Count</h2>
+  <canvas id="att" width="600" height="300"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    async function draw(id, url, type) {
+      let token = localStorage.getItem("jwt");
+      if (!token) {
+        token = prompt("Paste JWT access token (from /api/token/):");
+        localStorage.setItem("jwt", token);
+      }
+      const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+      if (!res.ok) {
+        const text = await res.text();
+        alert("Request failed: " + res.status + " " + text);
+        return;
+      }
+      const data = await res.json();
+      new Chart(document.getElementById(id), {
+        type,
+        data: { labels: data.labels, datasets: [{ label: id, data: data.values }] }
+      });
+    }
+
+    draw("dept", "/api/analytics/employees-per-department/", "pie");
+    draw("att",  "/api/analytics/monthly-attendance/",      "bar");
+  </script>
+</body>
+</html>
