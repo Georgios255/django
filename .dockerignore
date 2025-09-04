@@ -1,0 +1,28 @@
+# Python cache / venv
+.venv
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VCS
+.git
+.gitignore
+
+# Environment (don’t include secrets in the image)
+.env
+.env.*
+!.env.example   # keep the example if you ever COPY docs
+
+# Django artifacts
+media/
+staticfiles/
+*.sqlite3
+db.sqlite3
+
+# IDE / tooling
+.idea/
+.vscode/
+pytest_cache/
+.coverage
+dist/
+build/
